@@ -41,3 +41,8 @@ class AppFontWeights {
   static const FontWeight boldOS = FontWeight.w700;
   static const FontWeight extraBoldOS = FontWeight.w800;
 }
+
+// Image & Icon Path Contants
+class AppImagePaths {
+  static const String backIconPath = "assets/icons/back.svg";
+}
