@@ -1,3 +1,4 @@
+import 'package:meow_world_app/screens/intermediate_screen.dart';
 import 'package:meow_world_app/screens/main_screen.dart';
 import 'package:meow_world_app/screens/signin_screen.dart';
 import 'package:meow_world_app/screens/signup_screen.dart';
@@ -63,7 +64,7 @@ class _FisrtScreenState extends State<FisrtScreen> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => IntermediateScreen()));
                 },
                 child: Text('Đăng nhập', style: TextStyle(color: Colors.white, fontSize: 18),),
               ),
