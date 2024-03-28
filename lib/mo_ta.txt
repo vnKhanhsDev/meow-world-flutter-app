@@ -1,0 +1,17 @@
+api: Chứa mã nguồn liên quan đến giao tiếp với các API bên ngoài, bao gồm cả việc gửi yêu cầu mạng và xử lý dữ liệu trả về.
+
+models: Chứa các lớp mô hình dữ liệu để đại diện cho các đối tượng trong ứng dụng, giúp phân tích và hiển thị dữ liệu từ các yêu cầu API.
+
+screens: Chứa mã nguồn của các màn hình (screens) của ứng dụng, với mỗi màn hình có thể có một thư mục con riêng để quản lý giao diện và logic.
+
+widgets: Chứa các widget tái sử dụng, như nút, thanh tìm kiếm, giúp tái sử dụng và duy trì giao diện một cách dễ dàng.
+
+services: Chứa các dịch vụ cung cấp các chức năng chung cho ứng dụng, như xác thực người dùng và quản lý trạng thái ứng dụng.
+
+utils: Chứa các hàm tiện ích và công cụ được sử dụng trong toàn bộ dự án, như định dạng ngày tháng và xử lý hình ảnh.
+
+constants: Chứa các hằng số được sử dụng trong dự án như URL của API và các giá trị hằng số khác.
+
+providers: Chứa các provider nếu sử dụng Flutter Provider để quản lý trạng thái ứng dụng.
+
+routes: Chứa tất cả các định nghĩa đường dẫn của ứng dụng, bao gồm cả tệp định nghĩa của mỗi màn hình và phương pháp điều hướng giữa chúng.
