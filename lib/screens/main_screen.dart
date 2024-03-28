@@ -3,6 +3,7 @@ import 'package:meow_world_app/widgets/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meow_world_app/constants/mw_constants.dart';
+import 'package:meow_world_app/screens/favorite_screen.dart';
 import 'package:meow_world_app/widgets/discover_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -36,12 +37,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/heart-outlined.svg",
       "active_icon": "assets/icons/heart-filled.svg",
-      "page": Container(
-        color: AppColors.neutralColor20,
-        child: Center(
-          child: Text("Bookmark Page"),
-        ),
-      )
+      "page": FavoriteScreen(),
     },
     {
       "icon": "assets/icons/setting-outlined.svg",
@@ -155,7 +151,7 @@ class BottomBarItem extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
           child: SvgPicture.asset(
             icon,
             colorFilter: isActive
