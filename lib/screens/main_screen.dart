@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meow_world_app/widgets/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meow_world_app/constants/mw_constants.dart';
+import 'package:meow_world_app/widgets/discover_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -28,7 +31,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       "page": Container(
         color: AppColors.neutralColor20,
         child: Center(
-          child: Text("Cats Page"),
+          child: DiscoverPage(),
         ),
       )
     },
@@ -47,9 +50,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       "active_icon": "assets/icons/setting-filled.svg",
       "page": Container(
         color: AppColors.neutralColor20,
-        child: Center(
-          child: Text("Setting Page"),
-        ),
+        child: Setting(),
       )
     }
   ];

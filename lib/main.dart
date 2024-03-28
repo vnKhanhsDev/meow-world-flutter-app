@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meow_world_app/screens/main_screen.dart';
-
-void main() {
+import 'package:meow_world_app/screens/first_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -18,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      home: FisrtScreen(),
     );
   }
 }
