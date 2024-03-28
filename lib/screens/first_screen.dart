@@ -63,7 +63,7 @@ class _FisrtScreenState extends State<FisrtScreen> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignInScreen()));
                 },
                 child: Text('Đăng nhập', style: TextStyle(color: Colors.white, fontSize: 18),),
               ),
