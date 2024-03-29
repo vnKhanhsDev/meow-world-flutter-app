@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:meow_world_app/constants/mw_constants.dart';
 import 'package:meow_world_app/screens/main_screen.dart';
 import 'package:meow_world_app/screens/signin_screen.dart';
+import 'package:meow_world_app/screens/intermediate_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,12 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => SignInScreen()),
+            MaterialPageRoute(builder: (_) => IntermediateScreen()),
             (route) => false
         );
       } else {
         Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (_) => MainScreen()), (route) => false
+            MaterialPageRoute(builder: (_) => IntermediateScreen()), (route) => false
         );
       }
     });

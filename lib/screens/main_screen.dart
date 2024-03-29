@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meow_world_app/widgets/home_page.dart';
 import 'package:meow_world_app/widgets/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,9 +22,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       "active_icon": "assets/icons/home-filled.svg",
       "page": Container(
         color: AppColors.neutralColor20,
-        child: Center(
-          child: Text("Home Page"),
-        ),
+        child: HomePage(),
       )
     },
     {
@@ -37,7 +36,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/heart-outlined.svg",
       "active_icon": "assets/icons/heart-filled.svg",
-      "page": FavoriteScreen(),
+      "page": FavouriteScreen(),
     },
     {
       "icon": "assets/icons/setting-outlined.svg",
