@@ -46,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.only(top: 45),
+            margin: EdgeInsets.only(top: 50),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -84,7 +84,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         SizedBox(height: 8),
                         //Password Field
                         MWPasswordInputField(controller: passwordController),
-                        SizedBox(height: 8),
+                        SizedBox(height: 10),
                         // Forgot Password
                         Container(
                           child: Row(
@@ -128,7 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                         // Seperate line
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 24),
+                          margin: EdgeInsets.symmetric(vertical: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
