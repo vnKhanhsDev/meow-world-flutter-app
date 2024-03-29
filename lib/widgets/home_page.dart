@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage>{
                         backgroundColor: AppColors.mainColor,
                         child: Padding(
                           padding: const EdgeInsets.all(2), // Border radius
-                          child: ClipOval(child: Image.asset('assets/images/first-img.jpg')),
+                          child: ClipOval(child: Image.asset('assets/images/logo.png')),
                         ),
                       ),
                       Column(
