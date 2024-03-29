@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meow_world_app/constants/mw_constants.dart';
 import 'package:meow_world_app/screens/main_screen.dart';
-import 'package:meow_world_app/screens/signin_screen.dart';
+import 'package:meow_world_app/screens/auth/sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -19,8 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (_) => SignInScreen()),
-            (route) => false
-        );
+            (route) => false        );
       } else {
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => MainScreen()), (route) => false

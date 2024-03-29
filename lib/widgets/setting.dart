@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:meow_world_app/screens/auth/sign_in_screen.dart';
 
 class Setting extends StatefulWidget{
   State<Setting> createState() => _SettingState();
@@ -133,6 +134,9 @@ class _SettingState extends State<Setting>{
               width: double.infinity,
               child: InkWell(
                 onTap: (){
+                  Navigator.pushAndRemoveUntil(context,
+                      MaterialPageRoute(builder: (_) => SignInScreen()), (route) => false
+                  );
                   FirebaseAuth.instance.signOut();
                 },
                 child: Card(
