@@ -31,9 +31,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       "active_icon": "assets/icons/paw-filled.svg",
       "page": Container(
         color: AppColors.neutralColor20,
-        child: Center(
-          child: DiscoverPage(),
-        ),
+        child: DiscoverPage(),
       )
     },
     {
