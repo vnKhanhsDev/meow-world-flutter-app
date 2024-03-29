@@ -1,46 +1,22 @@
-import 'package:meow_world_app/constants/mw_constants.dart';
-import 'package:meow_world_app/screens/auth/forgot_password_screen.dart';
-import 'package:meow_world_app/screens/main_screen.dart';
-import 'package:meow_world_app/screens/signup_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:meow_world_app/utils/validate_username.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:meow_world_app/constants/mw_constants.dart';
+import 'package:meow_world_app/screens/auth/sign_up_screen.dart';
 import 'package:meow_world_app/widgets/mw_button.dart';
-import 'package:meow_world_app/widgets/mw_password_input_field.dart';
 import 'package:meow_world_app/widgets/mw_text_input_field.dart';
+import 'package:meow_world_app/widgets/mw_password_input_field.dart';
+import 'package:meow_world_app/utils/validate_username.dart';
+import 'package:meow_world_app/screens/main_screen.dart';
+import 'package:meow_world_app/screens/auth/forgot_password_screen.dart';
 
 class SignInScreen extends StatefulWidget {
-  State<SignInScreen> createState() => _SignInScreenState();
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  bool _isChecked = false;
-  bool isFocused_e = false;
-  bool isFocused_p = false;
-  final textFieldFocusNode = FocusNode();
-  bool _obscured = false;
-  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
-
-  void _toggleObscured() {
-    setState(() {
-      _obscured = !_obscured;
-      if (textFieldFocusNode.hasPrimaryFocus)
-        return; // If focus is on text field, dont unfocus
-      textFieldFocusNode.canRequestFocus =
-          false; // Prevents focus if tap on eye
-    });
-  }
-
-  // Future signIn() async {
-  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: emailController.text.trim(),
-  //       password: passwordController.text.trim());
-  // }
 
   void signIn() async {
     try {
@@ -61,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void dispose() {
-    emailController.dispose();
+    usernameController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -70,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.only(top: 55),
+            margin: EdgeInsets.only(top: 45),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -83,10 +59,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 SizedBox(height: 16),
-                Image.asset(
-                  'assets/images/sign_in_logo.png',
-                  width: 100,
-                  height: 100,
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Image.asset(
+                    'assets/images/sign_in_logo.png',
+                    width: 100,
+                    height: 100,
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 25, vertical: 16),
@@ -95,6 +74,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Username Field
                         MWTextInputField(
                           titleInputField: "Username hoặc Email",
                           controller: usernameController,
@@ -102,8 +82,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           validator: UsernameValidator.validate,
                         ),
                         SizedBox(height: 8),
+                        //Password Field
                         MWPasswordInputField(controller: passwordController),
                         SizedBox(height: 8),
+                        // Forgot Password
                         Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                               GestureDetector(
                                 child: Text(
-                                  'Click here',
+                                  'Ấn vào đây',
                                   style: TextStyle(
                                     color: AppColors.neutralColor100,
                                     fontSize: 12,
@@ -137,111 +119,118 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                         SizedBox(height: 16),
-                        MWButton(nameButton: "đăng nhập", onPressed: signIn),
-
-                    Container(
-                      margin: EdgeInsets.only(top: 20),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Quên mật khẩu?',
-                          style:
-                              TextStyle(color: Color.fromRGBO(255, 104, 65, 1)),
+                        // Sign-in Button
+                        MWButton(
+                          pathIcon: null,
+                          titleButton: "ĐĂNG NHẬP",
+                          onPressed: signIn,
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(top: 20),
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(top: 10.0),
-                              height: 1.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 8, right: 8),
-                              child: Text(
-                                'Hoặc',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                  backgroundColor: Colors.white,
-                                ),
-                                textAlign: TextAlign.center,
+
+                        // Seperate line
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 24),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(child: Divider(
+                                color: AppColors.mainColor,
+                                height: 1.0,
+                              )),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  'Hoặc',
+                                  style: TextStyle(
+                                    color: AppColors.neutralColor60,
+                                    fontSize: 14,
+                                    fontWeight: AppFontWeights.regularOS
+                                  ),
+                                )
                               ),
+                              Expanded(child: Divider(
+                                color: AppColors.mainColor,
+                                height: 1.0,
+                              ))
+                            ],
+                          ),
+                        ),
+
+                        // Continue with Google
+                        MWButton(
+                          pathIcon: "assets/icons/google.svg",
+                          titleButton: "Tiếp tục với Google",
+                          onPressed: () {},
+                        ),
+                        SizedBox(height: 16),
+                        // Continue with Facebook
+                        MWButton(
+                          pathIcon: "assets/icons/facebook.svg",
+                          titleButton: "Tiếp tục với Facebook",
+                          onPressed: () {},
+                        ),
+                        SizedBox(height: 30),
+
+                        // Term and Policy Message
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 30.0),
+                          child: Center(
+                            child: Text(
+                              'Bằng cách tiếp tục, bạn đồng ý với Điều khoản và Chính sách của chúng tôi',
+                              style: TextStyle(
+                                color: AppColors.neutralColor100,
+                                fontSize: 12,
+                                fontWeight: AppFontWeights.regularOS
+                              ),
+                              textAlign: TextAlign.center,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
+                ),
+              ],
+            ),
+          )
+      ),
+
+      // Sign-up link
+      bottomNavigationBar: Container(
+        height: 50,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Bạn chưa có tài khoản?",
+              style: TextStyle(
+                color: AppColors.neutralColor100,
+                fontSize: 14,
+                fontWeight: AppFontWeights.regularOS
+              ),
+            ),
+            GestureDetector(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 6.0),
+                child: Text(
+                  "Đăng ký",
+                  style: TextStyle(
+                      color: AppColors.mainColor,
+                      fontSize: 14,
+                      fontWeight: AppFontWeights.semiBoldOS
+                  ),
                 ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 20, bottom: 20),
-              width: double.infinity,
-              height: 40,
-              child: SignInButton(
-                Buttons.Google,
-                text: "Tiếp tục với Google",
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 40,
-              child: SignInButton(
-                Buttons.FacebookNew,
-                text: "Tiếp tục với Facebook",
-                onPressed: () {},
-              ),
-            ),
+              onTap: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => SignUpScreen()),
+                  (route) => false
+                );
+              },
+            )
           ],
         ),
-      )),
-      // bottomNavigationBar: Container(
-      //   height: 50,
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Container(
-      //         margin: EdgeInsets.only(bottom: 12),
-      //         child: Row(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: [
-      //             Text(
-      //               'Bạn chưa có tài khoản có tài khoản?',
-      //               style: TextStyle(color: Colors.grey),
-      //             ),
-      //             TextButton(
-      //                 onPressed: () {
-      //                   Navigator.push(
-      //                       context,
-      //                       MaterialPageRoute(
-      //                           builder: (context) => SignUpScreen()));
-      //                 },
-      //                 child: Text(
-      //                   'Đăng ký',
-      //                   style:
-      //                       TextStyle(color: Color.fromRGBO(255, 104, 65, 1)),
-      //                 ))
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      ),
     );
   }
 }
