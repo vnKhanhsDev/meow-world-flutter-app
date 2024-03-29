@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meow_world_app/screens/main_screen.dart';
-import 'package:meow_world_app/screens/first_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meow_world_app/screens/splash_screen.dart';
 import 'firebase_options.dart';
