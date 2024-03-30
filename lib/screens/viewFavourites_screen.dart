@@ -7,15 +7,15 @@ import 'package:meow_world_app/constants/mw_constants.dart';
 import 'package:meow_world_app/screens/info_cat_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-class InfoCatScreen extends StatefulWidget {
+class ViewFavoritesScreen extends StatefulWidget {
   Map<String, dynamic> infoCat;
-  InfoCatScreen({required this.infoCat});
+  ViewFavoritesScreen({required this.infoCat});
   @override
-  State<InfoCatScreen> createState() => _InfoCatScreenState();
+  State<ViewFavoritesScreen> createState() => _ViewFavoritesScreenState();
 }
 
-class _InfoCatScreenState extends State<InfoCatScreen> {
+class _ViewFavoritesScreenState extends State<ViewFavoritesScreen> {
+  @override
   final user = FirebaseAuth.instance.currentUser!;
   QueryDocumentSnapshot? userData;
 
@@ -76,20 +76,20 @@ class _InfoCatScreenState extends State<InfoCatScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                            Text('${widget.infoCat['name']}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal)),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Colors.black,
-                              ),
-                              child: IconButton(
-                                icon: Icon(Icons.favorite_border, size: 24,),
-                                onPressed: () {
-  
-                                },
-                                color: Colors.white,
-                              ),
+                          Text('${widget.infoCat['name']}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal)),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppColors.mainColor,
                             ),
+                            child: IconButton(
+                              icon: Icon(Icons.favorite_border, size: 24,),
+                              onPressed: () {
+
+                              },
+                              color: Colors.white,
+                            ),
+                          ),
                         ],
                       ),
                       Row(
@@ -114,8 +114,8 @@ class _InfoCatScreenState extends State<InfoCatScreen> {
             flexibleSpace:isLoading
                 ? Center(child: CircularProgressIndicator( color: AppColors.mainColor,))
                 :FlexibleSpaceBar(
-                  background: Image.network(urlImage, fit: BoxFit.cover, width: double.maxFinite,),
-                ),
+              background: Image.network(urlImage, fit: BoxFit.cover, width: double.maxFinite,),
+            ),
           ),
           SliverToBoxAdapter(
             child: Container(
@@ -174,67 +174,26 @@ class _InfoCatScreenState extends State<InfoCatScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Expanded(
-                flex: 1,
-                child:Container(
-                  margin: EdgeInsets.only(bottom: 12),
-                  height: 40,
-                  width: double.infinity,
-                  child:  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: AppColors.mainColor), // Màu và độ dày của viền
-                        ),
+              flex: 1,
+              child:Container(
+                margin: EdgeInsets.only(bottom: 12),
+                height: 40,
+                width: double.infinity,
+                child:  ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(color: AppColors.mainColor), // Màu và độ dày của viền
                       ),
                     ),
-                    onPressed: _launchInWebView,
-                    child: Text('Doc', style: TextStyle(color: AppColors.mainColor, fontSize: 18),),
                   ),
+                  onPressed: _launchInWebView,
+                  child: Text('Doc', style: TextStyle(color: AppColors.mainColor, fontSize: 18),),
                 ),
+              ),
             ),
-            Expanded(
-              flex: 3,
-                child: Container(
-                  margin: EdgeInsets.only(left: 24, bottom: 12),
-                  width: double.infinity,
-                  height: 40,
-                  child:  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(AppColors.mainColor),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Color.fromRGBO(255, 104, 65, 1)),
-                        ),
-                      ),
-                    ),
-                    onPressed: (){
-                      addFavourite();
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text("Success", style: TextStyle(color: AppColors.mainColor),),
-                            content: Text("Add favourites completed successfully!"),
-                            actions: <Widget>[
-                              TextButton(
-                                child: Text("OK", style: TextStyle(color: AppColors.mainColor),),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    child: Text('Favourites', style: TextStyle(color: Colors.white, fontSize: 18),),
-                  ),
-                ),
-            ),
-
           ],
         ),
       ),

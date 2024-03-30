@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:meow_world_app/screens/info_cat_screen.dart';
+import 'package:meow_world_app/constants/mw_constants.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -106,7 +107,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 12),
-            child: Text('Khám phá', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+            child: Text('Discover', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,7 +165,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
             child: Container(
               margin: EdgeInsets.only(top: 20),
               child: isLoading
-                  ? Center(child: CircularProgressIndicator())
+                  ? Center(child: CircularProgressIndicator(color: AppColors.mainColor,))
                   : ListView.builder(
                 itemCount: foundCat.length,
                 itemBuilder: (context, index) {

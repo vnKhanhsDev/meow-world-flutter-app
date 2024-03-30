@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meow_world_app/constants/mw_constants.dart';
-import 'package:meow_world_app/screens/auth/sign_up_screen.dart';
 import 'package:meow_world_app/widgets/mw_button.dart';
 import 'package:meow_world_app/widgets/mw_text_input_field.dart';
 import 'package:meow_world_app/widgets/mw_password_input_field.dart';
 import 'package:meow_world_app/utils/validate_username.dart';
 import 'package:meow_world_app/screens/main_screen.dart';
 import 'package:meow_world_app/screens/auth/forgot_password_screen.dart';
-
+// import 'package:meow_world_app/screens/auth/sign_up_screen.dart';
+import 'package:meow_world_app/screens/signup_screen.dart';
 class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();

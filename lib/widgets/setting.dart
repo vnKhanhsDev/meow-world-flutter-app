@@ -12,6 +12,7 @@ class _SettingState extends State<Setting>{
   Widget build(BuildContext context){
     return SingleChildScrollView(
       child: Container(
+        height: MediaQuery.of(context).size.height,
         margin: EdgeInsets.only(top: 50, bottom:20, left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
